@@ -1,0 +1,8 @@
+-The shell: is a program that takes keyboard commands and passes them to the operating system to carry out.
+-The Terminal: gives us access to the shell when we're using graphical user interface.
+-Bash: Born again shell, we can use it for executing commands, automation, customizing the environment, and I/O control.
+-Commands:
+date
+cal
+df
+free
