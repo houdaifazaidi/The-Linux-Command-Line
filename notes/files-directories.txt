@@ -1,0 +1,53 @@
+wildcards:
+*: matches any characters
+?: matches any single character
+[characters]: matchess any character that is a member of the set characters
+[!characters]: matches any character that is not a member of the set characters
+[[:class:]]: matches any character that is a member of the specified class
+
+
+
+Character Classes:
+[:alpha:]: matches any alphabetic character
+[:alnum:]: matches any alphanumeric character
+[:digit:]: matches any numeral
+[:lower:]: matches any lowercase letter
+[:upper:]: matches any uppercase letter
+
+
+
+ln -> Create links:
+hard link: ln file link
+symbolic link: ln -s item link
+=> item is either a file of a directory
+
+
+
+Hard links Vs Symbolic links:
+
+Imagine:
+-The file's data: the house
+-The filename: the adress
+-A link: another way to reach the same house
+
+=> a hard link is just another adress for the same house
+so:
+file.txt
+if you create a hard link:
+file.txt
+file2.txt
+=> both names point to the exact same data
+They are equal -> neither one is the original
+If you delete one, the data still exists because the other adress still points to it
+=> The data disappears only when all hard links are deleted.
+Limitations:
+-Cannot link to files on other disk/partition
+-Cannot link to directories
+
+=> a symbolic link is more link a shortcut or notes pointing to an address.
+Example:
+file.txt
+link.txt -> "go to file.txt"
+-the symbolic link doesn't contain the data, it just points to the filename.
+=>if you delete the symbolic link, the file.txt will still exists. If you delete the real file, the link will become broken, pointing to nothing.
+
