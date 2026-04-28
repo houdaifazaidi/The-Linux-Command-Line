@@ -1,0 +1,44 @@
+What exactly is a command?
+A command can be one of four different things:
+- An executable program
+- A command built into the shell itself
+- A shell function
+- An alias
+
+
+type: displays a command type
+type command
+
+which: displays an executable's location
+which executable
+
+help: get help for shell builtins
+help cd
+
+--help: displyas usage information (for executables that support it)
+mkdir --help
+
+man: displays a program's manual page (for most executable programs)
+man program
+ex: man ls     / man 5 ls => where 5 is the number of the section
+
+apropos: displays appropriate commands
+ex: apropos partition
+
+whatis: displays one-line manual page description
+ex: whatis ls
+
+info: displays a program's info entry
+ex: info     / info program
+
+alias: creating new commands (based on other commands)
+1- think of a name (ex: foo)
+2- check if the name is already being used by "type"
+ex: type foo
+3- alias foo='cd /usr; ls; cd -'
+=> to remove an alias use "unalias" followed by the name (ex: unalias foo)
+=> to display all the aliases defined in the environment, use the alias command without argumments (ex: alias)
+=> aliases vanish when your shell session ends.
+
+
+
