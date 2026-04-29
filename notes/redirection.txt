@@ -1,0 +1,67 @@
+Standard input, output, and error
+-There are two types of ouput (of a program), the program's result, and the status and error message. 
+stdout: standard output (a file)
+stderr: standard error (a file)
+=>By default, both standard output and standard error are linked to the screen and not saved into the disk.
+=> many programs take their input from a facility called "standard input", it's linked to the keyboard by default.
+
+I/O redirection allows us to change where output goes, and where input comes from.
+
+>: redirect standrad output to another file instead of the screen
+ex: ls -l /usr/bin > file.txt
+
+>>: same as ">", but it appends instead of rewriting.
+ex: ls -l /usr/bin >> file.txt
+
+2>: redirect standard error to another file.
+ex: ls -l /usr/bin 2> file.txt
+
+&>: redirect both standard output and standard error.
+ex: ls -l /usr/bin &> file.txt
+old way: ls -l /usr/bin > file.txt 2>&1
+
+&>>: same as &>, but it appends instead of rewriting.
+
+/dev/null: a special file that accepts input and does nothing with it (a black hole)
+ex: ls -l /usr/gin 2> /dev/null
+
+
+
+cat: Concatenate files
+it reads one or more files and copy them to standard output
+ex: cat file.txt
+=> it accepts user input (standard input) if it has no arguments (ctr+D when you finish)
+
+<: redirect standard input
+ex: cat < file.txt
+
+|: the standard output of command can be piped to the standard input of another command
+ex: command1 | command2   (the standard output of command1 is piped to the standard input of command2
+
+
+sort: sorts (can combine two or more lists and sort them as well)
+ex: ls /bin /usr/bin | sort | less
+
+uniq: report or omit repeated lines
+* it should be used with "sort", because the duplicates should be consecutive for "uniq" to remove them.
+ex: ls /bin /usr/bin | sort | uniq | less
+to see the list of duplicates, use "uniq -d"
+
+wc: print Line, Word, and Bytes count
+ex: wc test.txt
+-l: lines, -w: words, -m: characters, -c: bytes
+
+grep: printing lines matching a pattern
+ex: grep pattern test.txt
+-i: ignore case when searching (grep is case sensitive by default)
+-v: print the lines that don't match the pattern
+
+head/tail: print First/Last part of a file
+-n: number of lines to be printed
+ex: head -n 5 test.txt
+-f: monitor the file (when lines are appended on the file, they immediately appear on the display). ctr-C to leave.
+
+tee: Reads from stdin and output to stdout and files
+ex: ls /usr/bin | tee test.txt | grep zip
+
+
