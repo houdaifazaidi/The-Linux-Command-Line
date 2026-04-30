@@ -1,0 +1,44 @@
+expansion: we enter something, and it is expanded into something else before the shell acts upon it.
+ex: echo *
+-> will print all the files names in a directory, meaning that the * exapanded into the names of the files in the current directory.
+
+Arithmetic expansion: $((expression))
+ex: echo $((2+2))
+-> arithmetic expansion supports only intergers.
+(+, -, *, /, **, %)
+
+Brace Expansions:
+ex: echo {1..5} -> 1 2 3 4 5
+ex: echo test{001..5} -> test001 test002 test003 test004 test005
+ex: echo test_{A{1,2},B{3,4}} -> test_A1 test_A2 test_B3 test_B4
+ex: echo {f..a} -> f e d c b a
+
+Parameter expansion:
+ex echo $USER -> houdaifa (my username)
+to see the list of available variables: printenv | less
+
+Command Substitution:
+ex: echo -l $(which cp)
+-> the result of the of the inner command becomes an argument the outer command.
+another notation: $(command) = `command`
+
+
+
+Quoting:
+
+double quote: all special charcters used by the shell are treated as ordinary characters, except ($, \, `)
+-> parameter expansion (variables), arithmetic expansion, and command substitution are still carried out.
+-> word splitting, pathname expansion, tilde expansion (~), and brace expansion ({}) are surpressed.
+
+single quote: surpasses all expansions.
+
+-> to selectively prevent an expansion inside double quotes, use "\", the escape character.
+-> however, the escape character is treated as an ordinary character inside single quotes.
+
+backslash escape equences:
+\a: beep
+\b: backspace
+\n: newline
+\r: carriage return
+\t: tab
+-> add -e to enable interpretation of escape sequences.	
