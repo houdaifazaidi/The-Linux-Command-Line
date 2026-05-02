@@ -1,0 +1,36 @@
+clear: clear the terminal screen
+history: display or manipulate the history list
+
+ctrl-a: move the cursor to the beginning of the line
+ctrl-e: move the cursor to the end of the line
+
+ctrl-f = ->
+ctrl-b = <-
+
+alt-f: -> one word
+alt-b: <- one word
+
+ctrl-l: clear	
+
+
+ctrl-d: delete the character at the cursor location
+ctrl-t: transpose (exchange) the character at the cursor location with the one preceding it.
+alt-t: same as the above, but for words.
+
+alt-l: from the cursor location to the end of word to lowercase
+alt-u: same as above, but to uppercase.
+
+
+cutting and pasting (killing and yanking) text:
+ctrl-k: kill text fromt the cursor location to the end of line
+ctrl-u: kill text from the cursor location to the beginning of line
+ctrl-y: yank text from the kill-ring and insert it at the cursor location
+alt-backspace: kill text from the cursor location to the beginning of word.
+alt-d: kill text from the cursor location to the end of word.
+
+history:
+history | less
+history expansion: !n where n is the line number of that command in history
+ctrl-r for incremental search.
+ctrl-p: the up arrow (previous history entry)
+ctrl-n: next history entry
