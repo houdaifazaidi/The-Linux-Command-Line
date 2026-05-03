@@ -1,0 +1,109 @@
+id: information about your identity.
+
+-user accounts are defined in the /etc/passwd file (user login, uid, gid, account's real name, home directory ...)
+-groups are defined in the /etc/group file
+
+
+
+Reading, Writing, and Executing:
+
+houdaifa@houdaifa:~$ ls -l test.txt
+-rw-rw-r-- 1 houdaifa houdaifa 21 Apr 28 22:54 test.txt
+||  |  |
+||  |  -> world
+||  -> group
+|-> owner
+-> file type
+
+-> the first 10 characters of the listing are the "file attributes"
+-> the first one is the file type:
+-: a regular file
+d: a directory
+l: a symbolic link 
+c: a character special file (such as a terminal or /dev/null)
+b: a block special file, it refers to a device that handles data in blocks (such as a hard drive or DVD drive)
+
+-> the remaining 9 characters of the files attributes (owner, group, world) are called "file mode", presenting read, write and execute permissons for file (owner, group, world).
+
+Files:
+r: Allows a file to be "opened" and "read"
+w: Allows a file to written or truncated; however, this attribute does not allow a files to be renamed or deleted, it is determined by directory attributes.
+x: Allows a file to be treated as a program and executed. (program files written in scripting languages must also be set as readable to be executed.)
+
+Directories:
+r: Allows a directory's contents to be listed if the execute attribute is also set.
+w: Allows files within a directory to be created, deleted, and renamed if the execute attribute is also set.
+x: allows a directory to be entered., cd diretory.
+
+chmod: change file mode
+octal notation:
+Octal Binary File mode
+0     000    ---
+1     001    --x
+2     010    -w-
+3     011    -wx
+4     100    r--
+5     101    r-x
+6     110    rw-
+7     111    rwx
+-> ex: chmod 600 test.txt (-rw-------)
+
+symbolic nation:
+the symbolic nation is devided into three parts:
+- who the change will affect (u: user (owner), g: group, o: others (world), a: all (u, g, a))
+- which operation will be performded (+/-/=)
+- what permission will be set (rwx)
+-> if no character is specified (u, g, o), "a" (all) will be assumed.
+
+examples:
+u+x: add execute permission for the owner
+u-x: remove excute permission for the owner
++x: add execute persmission for all (equivalent to a+x)
+go=rw: set group owner and anyone beside to have read and write persmissions (exactly read and write permissions, if they had execute persmission before, it will be removed)
+
+
+umask: set default permissions
+default: 0002 -> -rw-rw-r--
+0000 -> -rw-rw-rw-
+0777 -> ----------
+0057 -> -rw-------
+=> whever there is a 1, we remove (ex: 2 -> 010 -> w is removed -> r--)
+
+some special permissions:
+- setuid bit (4): when applied to an executable file, it changes the effective user ID to that of the program's owner -> This allows the program to access files and directories that an ordinary user would normally be prohibited from accessing. 
+- setgid bit (2): same as the above, but for the user group ID
+-> when applied to a directory: newly created files in the directory will be given the group ownership of the directory rather the group ownership of the file's creater. (usefull in a shared directory).
+- sticky bit (1): on a directory, prevents users from deleting files they don't own even if the directory is writable.
+
+chmod:
+u+s, g+s, +t (a+t), or use four digits instead of three if you use the octal notation.
+-rwsrwsrwt.
+
+Changing identities:
+su [-[l]] [user]
+examples: 
+su -l houdaifa
+sudo su - (root)
+sudo -i (root)
+
+sudo: doesn't require the superuser's password, it requires the user's own password.
+-> it doesn't start a new shell, nor does it load another user's environment. (unless you use -i)
+sudo -l: to see what privileges are granted by sudo.
+
+
+chown: change file/directory owner and group
+chown [owner][:[group]] file
+ex: 
+chown houdaifa test.txt -> changes owner
+chown :houdaifa test.txt -> changes group
+chown houdaifa:hodaifa test.txt -> changes owner and group
+chown houdaifa: test.txt -> changes owner, and the group to the login group of that user
+(there is chgrp, an old command that works only with groups)
+
+to change the password:
+passwd [user]
+-> just write passwd. (you can specify the user is you have superuser privileges.
+
+ 
+
+
